@@ -1,0 +1,139 @@
+
+
+.welcome {
+    position: relative;
+
+    height: 100svh;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: aquamarine;
+}
+
+.welcome_content {
+    position: relative;
+
+    height: 100svh;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(black, .2);
+}
+
+.welcome_content, .welcome_canvas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100svh;
+    height: 100vh;
+}
+
+
+.welcome_title {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+
+.welcome_text {
+    max-width: 640px;
+    text-align: center;
+    font-family: 'Roboto';
+}
+
+
+.buy_cyber {
+    margin-top: 2rem;
+    padding: 0 2rem;
+}
+
+.buy_cyber_title {
+    font-size: 2.4rem;
+    font-weight: bold;
+
+    text-align: center;
+}
+
+.buy_cyber_text {
+    font-family: Roboto;
+
+    text-align: center;
+}
+
+
+.choice {
+    position: relative;
+    width: 99vw;
+    height: 100svh;
+    height: 100vh;
+
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    overflow-x: hidden;
+
+    @media screen and (min-width: 1000px) {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+        gap: 0rem;
+    }
+}
+
+
+.choice_canvas {
+    position: relative;
+    width: 90vw;
+    min-height: 240px;
+    max-height: 320px;
+
+    border-radius: 1rem;
+
+
+    aspect-ratio: 4/1;
+
+
+    @media screen and (min-width: 1000px) {
+        width: 42vw;
+        background-color: green;
+    }
+}
+
+.choice_canvas__go {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(black, .5);
+    border-radius: 1rem;
+
+    opacity: 0;
+    transition: 300ms all;
+}
+
+.choice_canvas:hover .choice_canvas__go {
+    opacity: 1;
+}
