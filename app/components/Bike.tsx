@@ -4,17 +4,54 @@ import { useGLTF } from "@react-three/drei";
 
 
 type BikeModelProps = {
-  rimColor: string
-  seatWheelsHandlesColor: string
-  chainCoverColor: string
-  hubAxleColor: string
-  bodyColor: string
+  rimColor?: string
+  seatWheelsHandlesColor?: string
+  chainCoverColor?: string
+  hubAxleColor?: string
+  bodyColor?: string
+  scale?: number
 
 }
-export default function BikeModel({ rimColor, seatWheelsHandlesColor, chainCoverColor, hubAxleColor, bodyColor, }: BikeModelProps) {
+interface ColorProps {
+  'material-color'?: string
+}
+export default function BikeModel({ scale = 1, rimColor, seatWheelsHandlesColor, chainCoverColor, hubAxleColor, bodyColor, }: BikeModelProps) {
   const { nodes, materials }: any = useGLTF("/models/bicycle.gltf");
+
+
+  let bodyColorProps: ColorProps = {}
+  if(bodyColor != null) {
+    bodyColorProps['material-color'] = bodyColor
+  }
+  
+
+  let rimColorProps: ColorProps = {}
+  if(rimColor != null) {
+    rimColorProps['material-color'] = rimColor
+  }
+  
+
+  let seatWheelsHandlesColorProps: ColorProps = {}
+  if(seatWheelsHandlesColor != null) {
+    seatWheelsHandlesColorProps['material-color'] = seatWheelsHandlesColor
+  }
+  
+
+  let chainCoverColorProps: ColorProps = {}
+  if(chainCoverColor != null) {
+    chainCoverColorProps['material-color'] = chainCoverColor
+  }
+  
+
+  let hubAxleColorProps: ColorProps = {}
+  if(hubAxleColor != null) {
+    hubAxleColorProps['material-color'] = hubAxleColor
+  }
+  
+
+  
   return (
-    <group dispose={null}>
+    <group dispose={null} scale={[ scale, scale, scale ]}>
       <mesh
         castShadow
         receiveShadow
@@ -88,7 +125,8 @@ export default function BikeModel({ rimColor, seatWheelsHandlesColor, chainCover
             receiveShadow
             geometry={nodes.Torus003_2.geometry}
             material={materials.Faixa}
-            material-color={rimColor}
+            {...rimColorProps}
+            // material-color={rimColor}
           />
         </group>
         <group
@@ -116,7 +154,8 @@ export default function BikeModel({ rimColor, seatWheelsHandlesColor, chainCover
           geometry={nodes.CaboFreioFrente.geometry}
           material={materials.Pneu}
           position={[1.68, -0.25, -0.15]}
-          material-color={seatWheelsHandlesColor}
+          {...seatWheelsHandlesColorProps}
+          // material-color={seatWheelsHandlesColor}
         />
         <mesh
           castShadow
@@ -139,7 +178,8 @@ export default function BikeModel({ rimColor, seatWheelsHandlesColor, chainCover
             receiveShadow
             geometry={nodes.Cylinder005_1.geometry}
             material={materials.PedalExterno}
-            material-color={chainCoverColor}
+            {...chainCoverColorProps}
+            // material-color={chainCoverColor}
           />
         </group>
         <group
@@ -168,7 +208,8 @@ export default function BikeModel({ rimColor, seatWheelsHandlesColor, chainCover
             receiveShadow
             geometry={nodes.Cylinder_1.geometry}
             material={materials.Eixo}
-            material-color={hubAxleColor}
+            {...hubAxleColorProps}
+            // material-color={hubAxleColor}
           />
           <mesh
             castShadow
@@ -200,7 +241,8 @@ export default function BikeModel({ rimColor, seatWheelsHandlesColor, chainCover
             receiveShadow
             geometry={nodes.Torus002_2.geometry}
             material={materials.Faixa}
-            material-color={rimColor}
+            {...rimColorProps}
+            // material-color={rimColor}
           />
         </group>
         <mesh
@@ -263,8 +305,9 @@ export default function BikeModel({ rimColor, seatWheelsHandlesColor, chainCover
             castShadow
             receiveShadow
             geometry={nodes.Cylinder008_1.geometry}
-            material={materials.Quadro}
-            material-color={bodyColor}
+            material={materials.Quadro.color}
+            {...bodyColorProps}
+            // material-color={bodyColor || materials.Quadro['color']}
           />
         </group>
         <mesh
